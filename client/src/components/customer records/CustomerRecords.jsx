@@ -15,8 +15,6 @@ const CustomerRecords = () => {
     { name: "Shafiq Hammad", position: "Regional Paradigm Technician", email: "shafiq.hd@example.com", role: "Moderator" },
     { name: "Alex Semuyel", position: "Applications Engineer", email: "alex.semuel@example.com", role: "Admin" },
     // Add more data as needed
-
-    
   ];
 
   const totalPages = Math.ceil(teamData.length / recordsPerPage);

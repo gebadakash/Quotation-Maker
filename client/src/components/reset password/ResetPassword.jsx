@@ -37,7 +37,7 @@ const ResetPassword = () => {
                         <NavLink className="fs-6" to="/register" style={{textDecoration:"none"}}>Already member? Login </NavLink>
                       </div>
                       <div>
-                        <a className="text-inherit fs-6" href="/authentication/forget-password" style={{textDecoration:"none"}}>Create  Account</a>
+                        <NavLink className="text-inherit fs-6" to="/register" style={{textDecoration:"none"}}>Create  Account</NavLink>
                       </div>
                     </div>
                   </div>

@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import logo from "../../assets/images/elioralogo.png";
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from "react-toastify";
 
 const RegistrationForm = () => {
 
   const [err, setErr] = useState(null);
 
   const [formData, setFormData] = useState({
-    username: '',
+    fullname: '',
     email: '',
     password: '',
     confirmPassword:'',
@@ -36,9 +37,10 @@ const RegistrationForm = () => {
 
       console.log("try block...")
       await axios.post("http://localhost:8800/api/auth/register", formData);
+      toast.success("User register sucessfully, Important: Your email is your Username")
       console.log("User register sucessfully...")
       setFormData({
-        username:"",
+        fullname:"",
         email:"",
         password:"",
         confirmPassword:""
@@ -47,6 +49,7 @@ const RegistrationForm = () => {
     }catch(err){
 
       //console.log(err);
+      toast.error("Something went wrong try again.!")
       setErr(err.response.data);
     }
   }
@@ -64,23 +67,23 @@ const RegistrationForm = () => {
                 </div>
                 <form method='post'>
                   <div className="mb-3">
-                    <label className="form-label" htmlFor="username">Username or email</label>
+                    <label className="form-label" htmlFor="fullname">Enter Your Name</label>
                     <input
-                      name="username"
-                      placeholder="User Name"
+                      name="fullname"
+                      placeholder="Enter Full Name"
                       type="text"
-                      id="username"
+                      id="fullname"
                       className="form-control"
-                      value={formData.username}
+                      value={formData.fullname}
                       onChange={handleChange}
                       required
                     />
                   </div>
                   <div className="mb-3">
-                    <label className="form-label" htmlFor="email">Email</label>
+                    <label className="form-label" htmlFor="email">Email Address</label>
                     <input
                       name="email"
-                      placeholder="Enter address here"
+                      placeholder="Enter email address here"
                       type="email"
                       id="email"
                       className="form-control"
@@ -90,7 +93,7 @@ const RegistrationForm = () => {
                     />
                   </div>
                   <div className="mb-3">
-                    <label className="form-label" htmlFor="password">Password</label>
+                    <label className="form-label" htmlFor="password">Choose Password</label>
                     <input
                       name="password"
                       placeholder="**************"
@@ -103,12 +106,12 @@ const RegistrationForm = () => {
                     />
                   </div>
                   <div className="mb-3">
-                    <label className="form-label" htmlFor="confirm-password">Confirm Password</label>
+                    <label className="form-label" htmlFor="confirmPassword">Re-enter Password</label>
                     <input
                       name="confirmPassword"
                       placeholder="**************"
                       type="password"
-                      id="confirm-password"
+                      id="confirmPassword"
                       className="form-control"
                       value={formData.confirmPassword}
                       onChange={handleChange}
@@ -134,10 +137,10 @@ const RegistrationForm = () => {
                     </div>
                     <div className="d-md-flex justify-content-between mt-4">
                       <div className="mb-2 mb-md-0">
-                        <NavLink className="fs-6" to="/login" style={{textDecoration:"none"}}>Already member? Login </NavLink>
+                        <NavLink className="fs-6" to="/" style={{textDecoration:"none"}}>Already member? Login </NavLink>
                       </div>
                       <div>
-                        <a className="text-inherit fs-6" href="/authentication/forget-password" style={{textDecoration:"none"}}>Forgot your password?</a>
+                        <NavLink className="text-inherit fs-6" to="/resetPassword" style={{textDecoration:"none"}}>Forgot your password?</NavLink>
                       </div>
                     </div>
                   </div>
